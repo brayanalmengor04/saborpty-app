@@ -1,2 +1,3 @@
-# saborpty-app
-Sabor PTY  app flutter
+# SaborPTY - APP 
+
+System app intialize readme
