@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:saborpty_app/core/constants/app_colors.dart';
+import 'package:saborpty_app/core/constants/app_styles.dart';
 import 'package:saborpty_app/features/category/presentation/categorylist_screen.dart';
+import 'package:saborpty_app/features/recipes/presentation/recipelist_screen.dart';
+import 'package:saborpty_app/features/suggestion/presentation/suggestion_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,15 +29,18 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [  
                  // Search ---->
               Padding(
-                padding: const EdgeInsets.only(top: 25 , right: 10, left: 10 , bottom: 10),
+                padding: AppStyles.paddingCard,
                 child: textFieldSearch(),
-              ), 
-
-              Text("Category"),
-              Padding(
-                padding: const EdgeInsets.only(top: 25 , right: 10, left: 10 , bottom: 10), 
+              ),  
+              // Suggestion ---- con la api manejaremos que esto pueda mostrar la receta mas utilizada o favorita ... 
+               Padding(padding: AppStyles.paddingCard,child: SuggestionScreen(),
+              ),  
+                // Categories in the system----->
                 // Recibir todos los datos desde una data o api creada ( podemos usar datos estaticos por ahora)
-                child: CategorylistScreen(),
+              Padding(padding: AppStyles.paddingCard, child: CategorylistScreen(),
+              ),  
+              // Aqui cargare todos las recetas ------>
+               Padding(padding: AppStyles.paddingCard,  child: RecipelistScreen(),
               ), 
             ],
           )
@@ -50,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
               hintStyle: TextStyle(color: AppColors.accent),
               prefixIcon: Icon(Icons.search, color: AppColors.textSecondary),
               filled: true,
-              fillColor: Color(0xFFFFF1E6), // Color durazno claro similar a la imagen
+              fillColor: AppColors.borderRadius, // Color durazno claro similar a la imagen
               contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5.0),

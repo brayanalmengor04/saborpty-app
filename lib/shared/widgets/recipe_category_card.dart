@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saborpty_app/core/constants/app_styles.dart';
 
 class RecipeCategoryCard extends StatefulWidget {
   final String nameCategory;
@@ -21,8 +22,10 @@ class _RecipeCategoryCardState extends State<RecipeCategoryCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.onTap,
-      child: Container(width: 150,height: 150,margin: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
+      child: Container(width: 150,height: 150,margin: const EdgeInsets.all(8), 
+      
+        decoration: BoxDecoration( 
+          boxShadow: AppStyles.boxShadowCard,
           borderRadius: BorderRadius.circular(10)
         ),
         child: Stack(
@@ -40,7 +43,7 @@ class _RecipeCategoryCardState extends State<RecipeCategoryCard> {
             
             // Si quiero darle un desgradado a la imagen 
             Container(
-              decoration: BoxDecoration(
+              decoration: BoxDecoration( 
                 borderRadius: BorderRadius.circular(16),
                 gradient: LinearGradient(
                   begin: Alignment.bottomCenter,
