@@ -68,6 +68,9 @@ feature_name/
 
 ---
 
+> https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg
+
+
 ## 📦 Instalación y ejecución
 
 ```bash
@@ -88,6 +91,8 @@ Este proyecto está bajo la licencia [MIT](LICENSE).
 Siéntete libre de contribuir, reportar errores o proponer mejoras.
 
 ---
+
+
 
 ## 💡 Ideas futuras
 * Registro e inicio de sesión con Google o email
