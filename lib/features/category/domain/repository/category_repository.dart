@@ -1,6 +1,6 @@
 // Repository api 
-import 'package:saborpty_app/features/category/domain/entities/category.dart';
+import 'package:saborpty_app/features/category/data/models/category_model.dart';
 
 abstract class CategoryRepository {
-  Future<List<Category>> getAllCategories();
+  Future<List<CategoryModel>> getAllCategories();
 }

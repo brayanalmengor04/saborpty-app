@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:saborpty_app/features/category/data/datasources/category_data_source.dart';
-import 'package:saborpty_app/features/category/domain/entities/category.dart';
+import 'package:saborpty_app/features/category/data/models/category_model.dart';
 import 'package:saborpty_app/features/category/domain/repository/category_repository_impl.dart';
 import 'package:saborpty_app/shared/widgets/recipe_category_card.dart';
 
@@ -11,24 +10,24 @@ class CategorylistScreen extends StatefulWidget {
   State<CategorylistScreen> createState() => _CategorylistScreenState();
 }
 
-class _CategorylistScreenState extends State<CategorylistScreen> {
-  late Future<List<Category>> _categories;
+class _CategorylistScreenState extends State<CategorylistScreen> { 
 
-  @override
-  void initState() {
-    super.initState();
-    final repository = CategoryRepositoryImpl(CategoryDataSource());
-    _categories = repository.getAllCategories();
-  }
+  final _repo = CategoryRepositoryImpl();
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Category>>(
-      future: _categories,
-      builder: (context, snapshot) { 
-        // Le addjuntamos una carga para ver el estado de la conexion
-        if (snapshot.connectionState == ConnectionState.waiting) return Center(child: CircularProgressIndicator());
-        final categories = snapshot.data ?? [];
+    return FutureBuilder<List<CategoryModel>>(
+      future: _repo.getAllCategories(),
+      builder: (context, snapshot) {  
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator()); // Loading
+        }
+        if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        }
+
+        final categories = snapshot.data ?? []; 
+
         return Column(
           children: [
             Padding(
@@ -52,8 +51,8 @@ class _CategorylistScreenState extends State<CategorylistScreen> {
                   categories
                       .map(
                         (cat) => RecipeCategoryCard(
-                          nameCategory: cat.nameCategory,
-                          placeHolder: cat.placeHolder,
+                          nameCategory: cat.name ?? 'File Not Fount',
+                          placeHolder: cat.imageUrl ?? 'https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg',
                         ),
                       )
                       .toList(),

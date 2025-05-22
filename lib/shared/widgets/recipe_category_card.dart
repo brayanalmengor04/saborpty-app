@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:saborpty_app/core/constants/app_styles.dart';
 
@@ -33,11 +34,15 @@ class _RecipeCategoryCardState extends State<RecipeCategoryCard> {
             // Imagen de fondo
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                widget.placeHolder,
+              child: CachedNetworkImage(
+                imageUrl: widget.placeHolder,
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.cover,
+                placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) =>
+                    const Icon(Icons.error),
               ),
             ),  
             
