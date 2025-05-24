@@ -18,8 +18,9 @@ class CategoryDataSource {
   //   ];
   // }} 
   //  final String baseUrl = 'http://127.0.0.1:8000/api/v1/categories';
-  final String baseUrl = 'http://localhost:8000/api/v1/categories';
 
+  // Endpoint hosting prueba  
+  final String baseUrl ='https://saborpty-backend-production.up.railway.app/api/v1/categories';
   Future<List<CategoryModel>> getCategories() async {
     final response = await http.get(Uri.parse(baseUrl));
     if (response.statusCode == 200) {

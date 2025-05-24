@@ -50,7 +50,7 @@ class _RecipeCardState extends State<RecipeCard> {
           child: CachedNetworkImage(
             imageUrl: widget.imageUrl,
             width: 80,
-            height: 60,
+            height: 80,
             fit: BoxFit.cover,
           ),
         ),

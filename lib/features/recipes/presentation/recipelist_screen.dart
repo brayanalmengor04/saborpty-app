@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:saborpty_app/features/recipes/data/models/RecipeModel.dart';
+import 'package:saborpty_app/features/recipes/domain/repository/recipes_repository_impl.dart';
 import 'package:saborpty_app/shared/widgets/recipe_card.dart';
 
 class RecipelistScreen extends StatefulWidget { 
@@ -10,66 +12,78 @@ class RecipelistScreen extends StatefulWidget {
   State<RecipelistScreen> createState() => _RecipelistScreenState();
 }
 
-class _RecipelistScreenState extends State<RecipelistScreen> { 
-
-   final List<Map<String, dynamic>> popularRecipes = [
-    {
-      "id": 1,
-      "title": "Arroz con Pollo",
-      "description": "Tradicionales",
-      "categoryName": "Tradicionales",
-      "durationMinutes": 45,
-      "difficulty": "Media",
-      "rating": 4.8,
-      "imageUrl": "https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg"
-    },
-    {
-      "id": 2,
-      "title": "Patacones",
-      "description": "Platos Rápidos",
-      "categoryName": "Platos Rápidos",
-      "durationMinutes": 20,
-      "difficulty": "Fácil",
-      "rating": 4.7,
-      "imageUrl": "https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg"
-    },
-    {
-      "id": 3,
-      "title": "Ceviche Panameño",
-      "description": "Mariscos",
-      "categoryName": "Mariscos",
-      "durationMinutes": 30,
-      "difficulty": "Media",
-      "rating": 4.9,
-      "imageUrl": "https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg"
-    },
-  ];
+class _RecipelistScreenState extends State<RecipelistScreen> {  
   
-    @override
+  final RecipesRepositoryImpl _repo = RecipesRepositoryImpl();
+  List<RecipeModel> _recipes = [];
+  int _visibleCount = 4;
+  bool _isLoading = true;
+  bool _hasError = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadRecipes();
+  }
+
+  Future<void> _loadRecipes() async {
+    try {
+      final data = await _repo.getAllRecipes();
+      setState(() {
+        _recipes = data;
+        _isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        _hasError = true;
+        _isLoading = false;
+      });
+    }
+  }
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 15, top: 20),
-            child: Text(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 20),
+            const Text(
               "Recetas Populares",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-          ),
-          const SizedBox(height: 10),
-          ...popularRecipes.map((recipe) => RecipeCard(
-                id: recipe['id'],
-                title: recipe['title'],
-                description: recipe['description'],
-                categoryName: recipe['categoryName'],
-                durationMinutes: recipe['durationMinutes'],
-                difficulty: recipe['difficulty'],
-                rating: recipe['rating'],
-                imageUrl: recipe['imageUrl'],
-              )),
-        ],
+            const SizedBox(height: 10),
+            if (_isLoading)
+              const Center(child: CircularProgressIndicator())
+            else if (_hasError)
+              const Center(child: Text("Error al cargar recetas"))
+            else
+                  ..._recipes.take(_visibleCount).map(
+                    (recipe) => RecipeCard(
+                      id: recipe.id ?? 0,
+                      title: recipe.title ?? 'Unknown Error',
+                      description: recipe.description ?? 'No description available',
+                      categoryName: recipe.categoryName ?? 'Uncategorized',
+                      durationMinutes: recipe.durationMinutes ?? 0,
+                      difficulty: recipe.difficulty ?? 'Unknown',
+                      rating: recipe.rating ?? 0.0,
+                      imageUrl: recipe.imageUrl ?? '',
+                    ),
+                  ),
+            if (!_isLoading && !_hasError && _visibleCount < _recipes.length)
+              Center(
+                child: TextButton(
+                  onPressed: () {
+                    setState(() {
+                      _visibleCount += 4;
+                    });
+                  },
+                  child: const Text("Ver más"),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

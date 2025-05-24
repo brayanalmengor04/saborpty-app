@@ -37,8 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),  
                 // Categories in the system----->
                 // Recibir todos los datos desde una data o api creada ( podemos usar datos estaticos por ahora)
-              // Padding(padding: AppStyles.paddingCard, child: CategorylistScreen(),
-              // ),  
+              Padding(padding: AppStyles.paddingCard, child: CategorylistScreen(),
+              ),  
               // Aqui cargare las mejores recetas ------>
                Padding(padding: AppStyles.paddingCard,  child: RecipelistScreen(),
               ), 
