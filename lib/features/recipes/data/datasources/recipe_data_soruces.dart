@@ -5,7 +5,7 @@ import 'package:saborpty_app/features/recipes/data/models/RecipeModel.dart';
 
 class RecipeDataSoruces {
 
-  final String baseUrl ="http://localhost:8000/api/v1/recipes/enriched/all";
+  final String baseUrl ="https://saborpty-backend-production.up.railway.app/api/v1/recipes/enriched/all";
 
   Future <List<RecipeModel>> getRecipes() async {
      final response = await http.get(Uri.parse(baseUrl));

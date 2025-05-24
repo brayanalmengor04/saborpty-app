@@ -30,7 +30,7 @@ class _RecipeCardState extends State<RecipeCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -55,7 +55,11 @@ class _RecipeCardState extends State<RecipeCard> {
           ),
         ),
         title: Text(widget.title, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text(widget.description),
+        subtitle: Text(
+          widget.description.length > 30
+              ? '${widget.description.substring(0, 30)}...'
+              : widget.description,
+        ),
         trailing: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
