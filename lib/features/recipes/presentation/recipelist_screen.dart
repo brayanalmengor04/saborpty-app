@@ -43,47 +43,47 @@ class _RecipelistScreenState extends State<RecipelistScreen> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            const Text(
-              "Recetas Populares",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.only(  left: 10,bottom: 5,),
+            child: const Text(
+              "Popular recipes",
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800),
             ),
-            const SizedBox(height: 10),
-            if (_isLoading)
-              const Center(child: CircularProgressIndicator())
-            else if (_hasError)
-              const Center(child: Text("Error al cargar recetas"))
-            else
-                  ..._recipes.take(_visibleCount).map(
-                    (recipe) => RecipeCard(
-                      id: recipe.id ?? 0,
-                      title: recipe.title ?? 'Unknown Error',
-                      description: recipe.description ?? 'No description available',
-                      categoryName: recipe.categoryName ?? 'Uncategorized',
-                      durationMinutes: recipe.durationMinutes ?? 0,
-                      difficulty: recipe.difficulty ?? 'Unknown',
-                      rating: recipe.rating ?? 0.0,
-                      imageUrl: recipe.imageUrl ?? '',
-                    ),
+          ),
+          const SizedBox(height: 10),
+          if (_isLoading)
+            const Center(child: CircularProgressIndicator())
+          else if (_hasError)
+            const Center(child: Text("Error al cargar recetas"))
+          else
+                ..._recipes.take(_visibleCount).map(
+                  (recipe) => RecipeCard(
+                    id: recipe.id ?? 0,
+                    title: recipe.title ?? 'Unknown Error',
+                    description: recipe.description ?? 'No description available',
+                    categoryName: recipe.categoryName ?? 'Uncategorized',
+                    durationMinutes: recipe.durationMinutes ?? 0,
+                    difficulty: recipe.difficulty ?? 'Unknown',
+                    rating: recipe.rating ?? 0.0,
+                    imageUrl: recipe.imageUrl ?? '',
                   ),
-            if (!_isLoading && !_hasError && _visibleCount < _recipes.length)
-              Center(
-                child: TextButton(
-                  onPressed: () {
-                    setState(() {
-                      _visibleCount += 4;
-                    });
-                  },
-                  child: const Text("Ver más"),
                 ),
+          if (!_isLoading && !_hasError && _visibleCount < _recipes.length)
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  setState(() {
+                    _visibleCount += 4;
+                  });
+                },
+                child: const Text("Ver más"),
               ),
-          ],
-        ),
+            ),
+        ],
       ),
     );
   }
