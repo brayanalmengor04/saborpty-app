@@ -1,5 +1,6 @@
 import 'package:saborpty_app/features/recipes/data/datasources/recipe_data_soruces.dart';
 import 'package:saborpty_app/features/recipes/data/models/RecipeModel.dart';
+import 'package:saborpty_app/features/recipes/data/models/RecipeModelDetail.dart';
 import 'package:saborpty_app/features/recipes/domain/repository/recipes_repository.dart';
 
 class RecipesRepositoryImpl implements RecipesRepository{
@@ -8,5 +9,8 @@ class RecipesRepositoryImpl implements RecipesRepository{
 
   @override
   Future<List<RecipeModel>> getAllRecipes() => dataSources.getRecipes();
+
+  @override
+  Future<RecipeModelDetail> getRecipeDetailById(int id) => dataSources.getRecipeDetailById(id);
   
 }

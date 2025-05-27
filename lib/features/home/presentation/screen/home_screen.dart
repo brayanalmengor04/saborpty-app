@@ -32,14 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: AppStyles.paddingCard,
                 child: textFieldSearch(),
               ),  
-              // Suggestion ---- con la api manejaremos que esto pueda mostrar la receta mas utilizada o favorita ... 
                Padding(padding: AppStyles.paddingCard,child: SuggestionScreen(),
               ),  
-                // Categories in the system----->
-                // Recibir todos los datos desde una data o api creada ( podemos usar datos estaticos por ahora)
               Padding(padding: AppStyles.paddingCard, child: CategorylistScreen(),
               ),  
-              // Aqui cargare las mejores recetas ------>
                Padding(padding: AppStyles.paddingCard,  child: RecipelistScreen(),
               ), 
             ],

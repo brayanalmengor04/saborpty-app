@@ -1,5 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image/cached_network_image.dart'; 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class RecipeCard extends StatefulWidget { 
   final int id ; 
@@ -20,15 +21,9 @@ class RecipeCard extends StatefulWidget {
   State<RecipeCard> createState() => _RecipeCardState();
 }
 class _RecipeCardState extends State<RecipeCard> { 
-  void onRecipeTap(int id) { 
-    // Realizar navegacion y mostrar detalle  pasando los datos a la otra vista .  
-
-    // RecipeDetail (id: widget.id)
-    print('Recipe tapped with id: $id');
-    // Navigator.push(...) o showDialog(...) por ejemplo
-  }
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
@@ -43,7 +38,8 @@ class _RecipeCardState extends State<RecipeCard> {
         ],
       ),
       child: ListTile( 
-        onTap: () => onRecipeTap(widget.id), 
+        // Ruta para las navegaciones
+        onTap: () => context.push('/recipe/${widget.id}'),
         contentPadding: const EdgeInsets.all(12),
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(12),
