@@ -23,15 +23,17 @@ class _RecipeCategoryCardState extends State<RecipeCategoryCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.onTap,
-      child: Container(width: 150,height: 150,margin: const EdgeInsets.all(8), 
-      
-        decoration: BoxDecoration( 
+      child: Container(
+        width: 150,
+        height: 150,
+        margin: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
           boxShadow: AppStyles.boxShadowCard,
-          borderRadius: BorderRadius.circular(10)
+          borderRadius: BorderRadius.circular(10),
         ),
         child: Stack(
           children: [
-            // Imagen de fondo
+            // Imagen de fondo con un placeholder plano y sin spinner
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: CachedNetworkImage(
@@ -39,33 +41,41 @@ class _RecipeCategoryCardState extends State<RecipeCategoryCard> {
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.cover,
-                placeholder: (context, url) =>
-                    const Center(child: CircularProgressIndicator()),
-                errorWidget: (context, url, error) =>
-                    const Icon(Icons.error),
+               placeholder: (context, url) => Image.network(
+                  'https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg', // Imagen remota como placeholder
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: double.infinity,
+                ),
+                errorWidget: (context, url, error) => Container(
+                  color: Colors.grey.shade300,
+                  child: const Icon(Icons.error, color: Colors.redAccent),
+                ),
               ),
-            ),  
-            
-            // Si quiero darle un desgradado a la imagen 
+            ),
+
+            // Degradado sobre la imagen
             Container(
-              decoration: BoxDecoration( 
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
-                  colors: [ 
-
-                    const Color(0xFF2E2E2E),
+                  colors: [
+                    Color(0xAA000000),
                     Colors.transparent,
                   ],
                 ),
               ),
             ),
-            // Texto sobre la imagen
+
+            // Texto de categoría centrado
             Center(
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Text(widget.nameCategory,style: const TextStyle(
+                child: Text(
+                  widget.nameCategory,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -81,7 +91,8 @@ class _RecipeCategoryCardState extends State<RecipeCategoryCard> {
                 ),
               ),
             ),
-            // Efecto de toque
+
+            // Efecto visual de toque
             Material(
               color: Colors.transparent,
               child: InkWell(

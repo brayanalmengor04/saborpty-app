@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:saborpty_app/core/constants/app_colors.dart';
+import 'package:saborpty_app/core/constants/app_routes.dart';
 import 'package:saborpty_app/core/constants/app_styles.dart';
 import 'package:saborpty_app/features/category/presentation/categorylist_screen.dart';
 import 'package:saborpty_app/features/recipes/presentation/recipelist_screen.dart';
@@ -63,20 +66,48 @@ class _HomeScreenState extends State<HomeScreen> {
           );
   }
 // Limpiar un poco el codigo  -> Previsto pasarlo si deseo conservar en otras ventanas 
+  // AppBar appBar() {
+  //   return AppBar(title: const Text('Sabor Panameño',style: TextStyle(color: AppColors.textSecondary,fontWeight: FontWeight.bold  ,fontSize: 26),
+  //   ),
+  //   elevation: 1,
+  //   shadowColor: AppColors.accent, 
+  //   actions: [
+  //     IconButton(onPressed: (){
+  //       print("All Okey");
+  //     }, icon: Icon(Icons.face_retouching_natural),
+  //     color: AppColors.textSecondary, 
+  //     ) 
+  //   ],
+  //   );
+  // } 
+
+  // Logout test 
   AppBar appBar() {
-    return AppBar(title: const Text('Sabor Panameño',style: TextStyle(color: AppColors.textSecondary,fontWeight: FontWeight.bold  ,fontSize: 26),
-    ),
-    elevation: 1,
-    shadowColor: AppColors.accent, 
-    actions: [
-      IconButton(onPressed: (){
-        print("All Okey");
-      }, icon: Icon(Icons.face_retouching_natural),
-      color: AppColors.textSecondary, 
-      ) 
-    ],
-    );
-  }
+        return AppBar(
+          title: const Text(
+            'Sabor Panameño',
+            style: TextStyle(
+              color: AppColors.textSecondary,
+              fontWeight: FontWeight.bold,
+              fontSize: 26,
+            ),
+          ),
+          elevation: 1,
+          shadowColor: AppColors.accent,
+          actions: [
+            IconButton(
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                if (context.mounted) context.go(AppRoutes.login);
+              },
+              icon: const Icon(Icons.logout),
+              color: AppColors.textSecondary,
+              tooltip: 'Cerrar sesión',
+            )
+          ],
+        );
+}
+  
   BottomNavigationBar bottomNavigationBar() {
     return BottomNavigationBar(          
       backgroundColor: AppColors.primary,  

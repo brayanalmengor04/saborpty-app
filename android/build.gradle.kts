@@ -1,3 +1,13 @@
+buildscript {
+    dependencies {
+        classpath("com.google.gms:google-services:4.3.8")
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
 allprojects {
     repositories {
         google()

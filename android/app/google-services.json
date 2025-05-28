@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "48221038275",
+    "project_id": "saborpa-7e763",
+    "storage_bucket": "saborpa-7e763.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48221038275:android:77202cd849949380d82476",
+        "android_client_info": {
+          "package_name": "com.example.saborpty_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48221038275-k9akvfjm4dv6li3tfm7d5uu2rr7pug66.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAO7a7SjNSbxgAqXvxBfyN5OSMGo0f5Ho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48221038275-k9akvfjm4dv6li3tfm7d5uu2rr7pug66.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -11,57 +11,61 @@ class CategorylistScreen extends StatefulWidget {
   State<CategorylistScreen> createState() => _CategorylistScreenState();
 }
 
-class _CategorylistScreenState extends State<CategorylistScreen> { 
-
+class _CategorylistScreenState extends State<CategorylistScreen> {
   final _repo = CategoryRepositoryImpl();
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<CategoryModel>>(
       future: _repo.getAllCategories(),
-      builder: (context, snapshot) {  
-       if (snapshot.connectionState == ConnectionState.waiting) {
-        return GridView.count(
-          crossAxisCount: 2,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          crossAxisSpacing: 5,
-          mainAxisSpacing: 5,
-          children: List.generate(
-            6,
-            (index) => const ShimmerCategoryCard(),
-          ),
-        );
-      }
-        final categories = snapshot.data ?? []; 
+      builder: (context, snapshot) {
+        // Mostrar shimmer mientras carga
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return GridView.count(
+            crossAxisCount: 2,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisSpacing: 5,
+            mainAxisSpacing: 5,
+            children: List.generate(
+              6,
+              (index) => const ShimmerCategoryCard(),
+            ),
+          );
+        }
+
+        // Mostrar mensaje si ocurre un error
+        if (snapshot.hasError) {
+          return Center(child: Text('Ocurrió un error al cargar las categorías'));
+        }
+
+        final categories = snapshot.data ?? [];
+
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10,bottom: 10),
-              child: Row( 
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text('Category',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
-                ],
+            const Padding(
+              padding: EdgeInsets.only(left: 10, bottom: 10),
+              child: Text(
+                'Category',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
             GridView.count(
               crossAxisCount: 2,
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               crossAxisSpacing: 5,
               mainAxisSpacing: 5,
-              children: 
-              // Hay que manejar lo del tema de pantallas de la categoria
-                  categories
-                      .map(
-                        (cat) => RecipeCategoryCard(
-                          nameCategory: cat.name ?? 'File Not Fount',
-                          placeHolder: cat.imageUrl ?? 'https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg',
-                        ),
-                      )
-                      .toList(),
+              children: categories
+                  .map(
+                    (cat) => RecipeCategoryCard(
+                      nameCategory: cat.name ?? 'No Name',
+                      placeHolder: cat.imageUrl ??
+                          'https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg',
+                    ),
+                  )
+                  .toList(),
             ),
           ],
         );
