@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:saborpty_app/core/constants/app_routes.dart';
 import 'package:saborpty_app/services/auth_google.dart';
 
 
@@ -30,8 +32,8 @@ class LoginScreen extends StatelessWidget {
                       final authUser = AuthUser(); 
                       final user = await authUser.loginGoogle();  
 
-                      if (user!=null) {
-                       print('Usuario autenticado: ${user?.email}'); 
+                      if (user!=null) { 
+                        context.go(AppRoutes.home);
                       }
                   }on FirebaseException catch (e) {
                     print(e); 

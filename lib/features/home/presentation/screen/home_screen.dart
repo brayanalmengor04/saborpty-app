@@ -1,35 +1,36 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:saborpty_app/core/constants/app_colors.dart';
-import 'package:saborpty_app/core/constants/app_routes.dart';
 import 'package:saborpty_app/core/constants/app_styles.dart';
 import 'package:saborpty_app/features/category/presentation/categorylist_screen.dart';
 import 'package:saborpty_app/features/recipes/presentation/recipelist_screen.dart';
 import 'package:saborpty_app/features/suggestion/presentation/suggestion_screen.dart';
+import 'package:saborpty_app/shared/widgets/menu/menu_widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
-class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0;
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+class _HomeScreenState extends State<HomeScreen> {  
+
+  final user = FirebaseAuth.instance.currentUser;
+  int _selectedIndex = 0; 
   @override
   Widget build(BuildContext context) {
     return Scaffold( 
       backgroundColor: AppColors.background,
-      appBar: appBar(), 
+      appBar: MenuWidgets.appBar(context), 
       body: ListView(
         children: [
          // Category ---->  
           Column( 
-            children: [  
+            children: [   
+              Padding( 
+              // Auth Google
+              padding: AppStyles.paddingCard,
+              child: _buildWelcomeUser(),
+              ),
                  // Search ---->
               Padding(
                 padding: AppStyles.paddingCard,
@@ -45,9 +46,40 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ) ,
-      bottomNavigationBar: bottomNavigationBar(),
+      bottomNavigationBar:MenuWidgets.bottomNavigationBar(
+       context: context,
+       currentIndex: _selectedIndex,
+       onTabChanged: (int index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+       ),
     );
-  }
+  } 
+  Widget _buildWelcomeUser() {
+    if (user == null) return const SizedBox.shrink();
+    return Row(
+      children: [
+        CircleAvatar(
+          radius: 30,
+          backgroundImage: NetworkImage(user!.photoURL ?? ''),
+          backgroundColor: Colors.grey[300],
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Text(
+            'Bienvenido, ${user!.displayName ?? 'Usuario'}',
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: AppColors.textSecondary,
+            ),
+          ),
+        ),
+      ],
+    );
+  } 
   TextField textFieldSearch() {
     return TextField(
             decoration: InputDecoration(
@@ -64,76 +96,5 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             style: TextStyle(color: AppColors.accent),
           );
-  }
-// Limpiar un poco el codigo  -> Previsto pasarlo si deseo conservar en otras ventanas 
-  // AppBar appBar() {
-  //   return AppBar(title: const Text('Sabor Panameño',style: TextStyle(color: AppColors.textSecondary,fontWeight: FontWeight.bold  ,fontSize: 26),
-  //   ),
-  //   elevation: 1,
-  //   shadowColor: AppColors.accent, 
-  //   actions: [
-  //     IconButton(onPressed: (){
-  //       print("All Okey");
-  //     }, icon: Icon(Icons.face_retouching_natural),
-  //     color: AppColors.textSecondary, 
-  //     ) 
-  //   ],
-  //   );
-  // } 
-
-  // Logout test 
-  AppBar appBar() {
-        return AppBar(
-          title: const Text(
-            'Sabor Panameño',
-            style: TextStyle(
-              color: AppColors.textSecondary,
-              fontWeight: FontWeight.bold,
-              fontSize: 26,
-            ),
-          ),
-          elevation: 1,
-          shadowColor: AppColors.accent,
-          actions: [
-            IconButton(
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                if (context.mounted) context.go(AppRoutes.login);
-              },
-              icon: const Icon(Icons.logout),
-              color: AppColors.textSecondary,
-              tooltip: 'Cerrar sesión',
-            )
-          ],
-        );
-}
-  
-  BottomNavigationBar bottomNavigationBar() {
-    return BottomNavigationBar(          
-      backgroundColor: AppColors.primary,  
-      type:  BottomNavigationBarType.fixed,
-      items: const <BottomNavigationBarItem>[ 
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.list),
-          label: 'Category',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.bookmark),
-          label: 'Saved',
-        ), 
-        BottomNavigationBarItem(
-          icon: Icon(Icons.face_retouching_natural_outlined),
-          label: 'Perfil',
-        ),
-      ],
-      currentIndex: _selectedIndex,  
-      unselectedItemColor: AppColors.accent,
-      selectedItemColor: AppColors.textSecondary,
-      onTap: _onItemTapped,
-    );
   }
 }

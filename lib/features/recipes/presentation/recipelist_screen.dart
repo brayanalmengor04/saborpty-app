@@ -3,7 +3,6 @@ import 'package:saborpty_app/features/recipes/data/models/RecipeModel.dart';
 import 'package:saborpty_app/features/recipes/domain/repository/recipes_repository_impl.dart';
 import 'package:saborpty_app/shared/widgets/shimmer/shimmer_recipe_card.dart';
 import 'package:saborpty_app/shared/widgets/recipe_card.dart';
-import 'package:shimmer/shimmer.dart';
 
 class RecipelistScreen extends StatefulWidget { 
 
