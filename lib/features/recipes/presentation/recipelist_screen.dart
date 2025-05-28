@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:saborpty_app/features/recipes/data/models/RecipeModel.dart';
 import 'package:saborpty_app/features/recipes/domain/repository/recipes_repository_impl.dart';
+import 'package:saborpty_app/shared/widgets/shimmer/shimmer_recipe_card.dart';
 import 'package:saborpty_app/shared/widgets/recipe_card.dart';
+import 'package:shimmer/shimmer.dart';
 
 class RecipelistScreen extends StatefulWidget { 
 
@@ -56,7 +58,8 @@ class _RecipelistScreenState extends State<RecipelistScreen> {
           ),
           const SizedBox(height: 10),
           if (_isLoading)
-            const Center(child: CircularProgressIndicator())
+             Column(
+             children: List.generate(4, (_) => const ShimmerRecipeCard()),)
           else if (_hasError)
             const Center(child: Text("Error al cargar recetas"))
           else

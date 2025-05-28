@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:saborpty_app/features/category/data/models/category_model.dart';
 import 'package:saborpty_app/features/category/domain/repository/category_repository_impl.dart';
+import 'package:saborpty_app/shared/widgets/shimmer/shimmer_category_card.dart';
 import 'package:saborpty_app/shared/widgets/recipe_category_card.dart';
 
 class CategorylistScreen extends StatefulWidget {
@@ -19,15 +20,20 @@ class _CategorylistScreenState extends State<CategorylistScreen> {
     return FutureBuilder<List<CategoryModel>>(
       future: _repo.getAllCategories(),
       builder: (context, snapshot) {  
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator()); // Loading
-        }
-        if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        }
-
+       if (snapshot.connectionState == ConnectionState.waiting) {
+        return GridView.count(
+          crossAxisCount: 2,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          crossAxisSpacing: 5,
+          mainAxisSpacing: 5,
+          children: List.generate(
+            6,
+            (index) => const ShimmerCategoryCard(),
+          ),
+        );
+      }
         final categories = snapshot.data ?? []; 
-
         return Column(
           children: [
             Padding(
