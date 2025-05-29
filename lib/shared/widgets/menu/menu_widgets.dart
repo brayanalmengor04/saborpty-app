@@ -5,8 +5,9 @@ import 'package:saborpty_app/core/constants/app_routes.dart';
 import 'package:saborpty_app/services/auth_google.dart';
 
 class MenuWidgets {
-  static AppBar appBar(BuildContext context) {
+   static AppBar appBar(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false, 
       title: const Text('Sabor Panameño',style: TextStyle(color: AppColors.textSecondary,
           fontWeight: FontWeight.bold,
           fontSize: 26,

@@ -1,6 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:saborpty_app/features/achievement/presentation/achievement_list.dart';
+import 'package:saborpty_app/features/profile/presentation/profile_summary.dart';
 import 'package:saborpty_app/shared/widgets/menu/menu_widgets.dart';
+
 
 class PerfilScreen extends StatefulWidget {
   const PerfilScreen({super.key});
@@ -9,36 +12,42 @@ class PerfilScreen extends StatefulWidget {
   State<PerfilScreen> createState() => _PerfilScreenState();
 }
 
-class _PerfilScreenState extends State<PerfilScreen> { 
-  int _selectedIndex = 3; 
-  
+class _PerfilScreenState extends State<PerfilScreen> {
+  int _selectedIndex = 3;
+
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
       appBar: MenuWidgets.appBar(context),
-      body: Center(
-        child: user != null
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+      body: user != null
+          ? SingleChildScrollView( 
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('UID: ${user.uid}'),
-                  Text('Email: ${user.email}'),
-                  Text('Nombre: ${user.displayName ?? 'No disponible'}'),
+                  ProfileSummary(user: user),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Text("Logros Recientes", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: AchievementList(),
+                  ),
                 ],
-              )
-            : const Text('Usuario no autenticado'),
+              ),
+            )
+          : const Center(child: Text('Usuario no autenticado')),
+         bottomNavigationBar: MenuWidgets.bottomNavigationBar(
+        context: context,
+        currentIndex: _selectedIndex,
+        onTabChanged: (int index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
       ),
-            bottomNavigationBar: MenuWidgets.bottomNavigationBar(
-            context: context,
-            currentIndex: _selectedIndex,
-            onTabChanged: (int index) {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              },
-       ), 
     );
   }
 }

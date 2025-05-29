@@ -26,11 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
          // Category ---->  
           Column( 
             children: [   
-              Padding( 
-              // Auth Google
-              padding: AppStyles.paddingCard,
-              child: _buildWelcomeUser(),
-              ),
                  // Search ---->
               Padding(
                 padding: AppStyles.paddingCard,
@@ -55,29 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
        ),
-    );
-  } 
-  Widget _buildWelcomeUser() {
-    if (user == null) return const SizedBox.shrink();
-    return Row(
-      children: [
-        CircleAvatar(
-          radius: 30,
-          backgroundImage: NetworkImage(user!.photoURL ?? ''),
-          backgroundColor: Colors.grey[300],
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Text(
-            'Bienvenido, ${user!.displayName ?? 'Usuario'}',
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: AppColors.textSecondary,
-            ),
-          ),
-        ),
-      ],
     );
   } 
   TextField textFieldSearch() {
