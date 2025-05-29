@@ -2,29 +2,55 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:saborpty_app/core/constants/app_colors.dart';
 import 'package:saborpty_app/core/constants/app_routes.dart';
-import 'package:saborpty_app/services/auth_google.dart';
+import 'dart:ui'; 
+
 
 class MenuWidgets {
-   static AppBar appBar(BuildContext context) {
+ static AppBar appBar(BuildContext context) {
     return AppBar(
-      automaticallyImplyLeading: false, 
-      title: const Text('Sabor Panameño',style: TextStyle(color: AppColors.textSecondary,
-          fontWeight: FontWeight.bold,
-          fontSize: 26,
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.white.withOpacity(0.05),
+      elevation: 0,
+      toolbarHeight: 70,
+      flexibleSpace: ClipRRect(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(30),
+          bottomRight: Radius.circular(30),
+        ),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.1),
+              border: Border(
+                bottom: BorderSide(
+                  color: Colors.white.withOpacity(0.2),
+                  width: 0.5,
+                ),
+              ),
+            ),
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Icon(Icons.fastfood_rounded, color: Colors.orangeAccent, size: 28),
+                    ),
+                    Icon(Icons.notifications_none_rounded, color: AppColors.textSecondary),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ),
       ),
-      elevation: 1,shadowColor: AppColors.accent,actions: [
-        IconButton(
-           onPressed: () => AuthUser().signOut().then((_) {
-            if (context.mounted) {
-              context.go(AppRoutes.login);
-            }
-          }),
-          icon: const Icon(Icons.logout),
-          color: AppColors.textSecondary,
-          tooltip: 'Cerrar sesión',
-        )
-      ],
     );
   }
   static BottomNavigationBar bottomNavigationBar({ 

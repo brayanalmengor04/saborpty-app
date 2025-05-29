@@ -34,14 +34,14 @@ class AchievementList extends StatelessWidget {
     ];
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 3),
+      padding: const EdgeInsets.all(8.0),
       child: GridView.count(
-        crossAxisCount: 2,
+        crossAxisCount: 4,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        crossAxisSpacing: 5,
-        mainAxisSpacing: 5,
-        childAspectRatio: 1.4,
+        childAspectRatio: 0.8,
         children: achievements
             .map((ach) => AchievementCard(
                   icon: ach['icon'] as IconData,

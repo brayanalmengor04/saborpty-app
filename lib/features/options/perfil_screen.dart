@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:saborpty_app/features/achievement/presentation/achievement_list.dart';
+import 'package:saborpty_app/features/activity/presentation/recent_activity_list.dart';
+import 'package:saborpty_app/features/configuration/presentation/configuration_list.dart';
 import 'package:saborpty_app/features/profile/presentation/profile_summary.dart';
 import 'package:saborpty_app/shared/widgets/menu/menu_widgets.dart';
 
@@ -34,7 +36,17 @@ class _PerfilScreenState extends State<PerfilScreen> {
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     child: AchievementList(),
+                  ),  
+                  const Padding(
+                    padding: EdgeInsets.only(top: 8),
+                    child: RecentActivityList(),
                   ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Text("Configuración", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                  ),
+                  const ConfigurationList(),
+
                 ],
               ),
             )
