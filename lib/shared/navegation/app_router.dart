@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:saborpty_app/core/constants/app_routes.dart';
 import 'package:saborpty_app/features/auth/presentation/login_screen.dart';
+import 'package:saborpty_app/features/auth/presentation/register_screen.dart';
 import 'package:saborpty_app/features/home/presentation/screen/home_screen.dart';
 import 'package:saborpty_app/features/options/category_options.dart';
 import 'package:saborpty_app/features/options/favorites_options.dart';
@@ -25,10 +26,10 @@ final appRouter = GoRouter(
       path: AppRoutes.login,
       builder: (context, state) => const LoginScreen(),
     ),
-  //  GoRoute(
-  //      path:AppRoutes.perfil,
-  //      builder: (context, state) => const PerfilScreen(),
-  //   ),
+     GoRoute(
+      path: AppRoutes.register,
+      builder: (context, state) => const RegisterScreen(),
+    ),
     GoRoute(
       path: AppRoutes.home,
       builder: (context, state) => const HomeScreen(),
