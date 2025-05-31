@@ -12,15 +12,21 @@ import 'package:saborpty_app/shared/widgets/recipe_detailview.dart';
 
 final appRouter = GoRouter(
   initialLocation: AppRoutes.login, 
-  redirect: (context, state){
-    final user = FirebaseAuth.instance.currentUser; 
-     final loggingIn = state.uri.path == AppRoutes.login; 
-       return user == null && !loggingIn
-        ? AppRoutes.login
-        : user != null && loggingIn
-            ? AppRoutes.home
-            : null; 
-  },
+    redirect: (context, state) {
+      final user = FirebaseAuth.instance.currentUser;
+      final loggingIn = state.uri.path == AppRoutes.login;
+      final registering = state.uri.path == AppRoutes.register;
+
+      if (user == null && !loggingIn && !registering) {
+        return AppRoutes.login;
+      }
+
+      if (user != null && (loggingIn || registering)) {
+        return AppRoutes.home;
+      }
+
+      return null;
+    },
   routes: [
     GoRoute(
       path: AppRoutes.login,
@@ -28,7 +34,7 @@ final appRouter = GoRouter(
     ),
      GoRoute(
       path: AppRoutes.register,
-      builder: (context, state) => const RegisterScreen(),
+      builder: (context, state) =>  RegisterScreen(),
     ),
     GoRoute(
       path: AppRoutes.home,
