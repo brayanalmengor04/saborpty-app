@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
     "Un buen plato comienza con buenos ingredientes 🥦",
     "Sazonar con pasión hace la diferencia 🌶️",
   ]; 
-  
+
   String get _randomTip => (_tips..shuffle()).first;
   @override
   Widget build(BuildContext context) {
@@ -159,7 +159,6 @@ class _LoginScreenState extends State<LoginScreen> {
       _emailError = '';
       _passwordError = '';
     });
-
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
 
@@ -214,7 +213,6 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() => _isLoading = false);
     }
   }
-
   Text titleLogin() {
     return Text.rich(
       TextSpan(

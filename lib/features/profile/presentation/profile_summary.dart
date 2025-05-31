@@ -7,8 +7,19 @@ class ProfileSummary extends StatelessWidget {
 
   const ProfileSummary({super.key, this.user});
 
+  bool get isGoogleSignIn {
+    return user?.providerData.any((info) => info.providerId == 'google.com') ?? false;
+  }
+  bool get isEmailPasswordSignIn {
+    return user?.providerData.any((info) => info.providerId == 'password') ?? false;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final displayName = isGoogleSignIn
+        ? (user?.displayName ?? 'Usuario')
+        : (user?.email ?? 'Usuario'); 
+
     return Card(
       color: AppColors.primary,
       margin: const EdgeInsets.all(16),
@@ -37,7 +48,7 @@ class ProfileSummary extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        user?.displayName ?? 'Usuario',
+                        displayName,
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

@@ -13,22 +13,19 @@ class EmailAuthServices implements AuthStrategy {
     try {
       final userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-
       final user = userCredential.user;
-
       if (user != null && !user.emailVerified) {
         print('⚠️ El correo electrónico no ha sido verificado.');
         await user.sendEmailVerification(); 
         return null;
       }
-
-      return user;
+      await user?.reload(); 
+      return FirebaseAuth.instance.currentUser;
     } on FirebaseAuthException catch (e) {
       print('❌ Error al iniciar sesión con email: ${e.message}');
       return null;
     }
   }
-
  Future<User?> register() async {
   try {
     final userCredential = await FirebaseAuth.instance

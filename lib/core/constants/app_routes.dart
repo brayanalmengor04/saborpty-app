@@ -5,6 +5,9 @@ class AppRoutes {
     static const String home = '/home';
     static const String recipeDetail = '/recipe/:id';  
 
+    static const String categoryDetail = '/category-detail';
+
+
      // Nuevas rutas agrupadas navegacion
     static const String navigation = '/navigation'; 
     static const String homeNavegation = 'home';

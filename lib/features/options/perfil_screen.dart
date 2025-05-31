@@ -15,12 +15,20 @@ class PerfilScreen extends StatefulWidget {
 }
 
 class _PerfilScreenState extends State<PerfilScreen> {
-  int _selectedIndex = 3;
-
+  int _selectedIndex = 3; 
+  @override
+  void initState() {
+    super.initState();
+    _refreshUser();
+  } 
+  void _refreshUser() async {
+    final user = FirebaseAuth.instance.currentUser;
+    await user?.reload(); 
+    setState(() {}); 
+  }
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
-
     return Scaffold(
       appBar: MenuWidgets.appBar(context),
       body: user != null

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:saborpty_app/core/constants/app_routes.dart';
 import 'package:saborpty_app/features/auth/presentation/login_screen.dart';
 import 'package:saborpty_app/features/auth/presentation/register_screen.dart';
+import 'package:saborpty_app/features/category/presentation/category_detail.dart';
 import 'package:saborpty_app/features/home/presentation/screen/home_screen.dart';
 import 'package:saborpty_app/features/options/category_options.dart';
 import 'package:saborpty_app/features/options/favorites_options.dart';
@@ -41,12 +42,10 @@ final appRouter = GoRouter(
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-      path: AppRoutes.recipeDetail,
-      builder: (context, state) {
-        final id = int.tryParse(state.pathParameters['id'] ?? '0') ?? 0;
-        return RecipeDetailview(recipeId: id);
-      },
-    ), 
+      path: AppRoutes.categoryDetail,
+      builder: (context, state) => const CategoryDetail(),
+    ),
+   
      GoRoute(
       path: AppRoutes.navigation,
       builder: (context, state) => const HomeScreen(), 
