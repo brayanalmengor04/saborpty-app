@@ -6,13 +6,15 @@ import 'package:saborpty_app/features/auth/presentation/login_screen.dart';
 import 'package:saborpty_app/features/auth/presentation/register_screen.dart';
 import 'package:saborpty_app/features/category/presentation/category_detail.dart';
 import 'package:saborpty_app/features/home/presentation/screen/home_screen.dart';
+import 'package:saborpty_app/features/introduction/introduction_screen.dart';
 import 'package:saborpty_app/features/options/category_options.dart';
 import 'package:saborpty_app/features/options/favorites_options.dart';
 import 'package:saborpty_app/features/options/perfil_screen.dart';
+import 'package:saborpty_app/main.dart';
 import 'package:saborpty_app/shared/widgets/recipe_detailview.dart';
 
 final appRouter = GoRouter(
-  initialLocation: AppRoutes.login, 
+  initialLocation: initialRoute, 
     redirect: (context, state) {
       final user = FirebaseAuth.instance.currentUser;
       final loggingIn = state.uri.path == AppRoutes.login;
@@ -33,6 +35,10 @@ final appRouter = GoRouter(
       path: AppRoutes.login,
       builder: (context, state) => const LoginScreen(),
     ),
+    GoRoute(
+    path: AppRoutes.introduction,
+    builder: (context, state) => const SaborIntroductionScreen(),
+  ),
      GoRoute(
       path: AppRoutes.register,
       builder: (context, state) =>  RegisterScreen(),

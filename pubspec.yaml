@@ -15,23 +15,39 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_launcher_icons: ^0.14.3
+  flutter_native_splash: ^2.4.6
   font_awesome_flutter: ^10.8.0
   go_router: ^15.1.2 
   google_fonts: ^6.2.1
   google_sign_in: ^6.3.0
   http: ^1.4.0
+  introduction_screen: ^3.1.17
   lottie: ^3.3.1
+  shared_preferences: ^2.3.0
   shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  
+flutter_native_splash:
+  color: "#e56b2b"
+  image: assets/logo/logotipe.png
+  android_gravity: center
+  ios_content_mode: center
+  fullscreen: true
+  android_12:
+    image: assets/logo/logotipe.png
+    icon_background_color: "#fd9f11"
 
-flutter_launcher_icons: 
-  android: true 
+flutter_launcher_icons:
+  android: true
   ios: true
-  image_path: "assets/logo/icon.png"
+  image_path: "assets/logo/saborpty.png"
+  adaptive_icon_background: "#e56b2b"
+  adaptive_icon_foreground: "assets/logo/saborpty.png"
+
 flutter:
   uses-material-design: true  
   
