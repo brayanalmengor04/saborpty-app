@@ -41,11 +41,28 @@ final appRouter = GoRouter(
       path: AppRoutes.home,
       builder: (context, state) => const HomeScreen(),
     ),
-    GoRoute(
-      path: AppRoutes.categoryDetail,
-      builder: (context, state) => const CategoryDetail(),
+  GoRoute(
+    path: AppRoutes.categoryDetail,
+      builder: (context, state) {
+        final category = state.pathParameters['category']!;
+        final imageUrl = state.uri.queryParameters['imageUrl'] ??
+            'https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg';
+        return CategoryDetail(
+          categoryName: category,
+          categoryImage: imageUrl,
+        );
+      },
     ),
-   
+
+   GoRoute(
+    path: AppRoutes.recipeDetail,
+    builder: (context, state) {
+      final idParam = state.pathParameters['id'];
+        final recipeId = int.parse(idParam!);
+        return RecipeDetailview(recipeId: recipeId);
+      },
+    ),
+  
      GoRoute(
       path: AppRoutes.navigation,
       builder: (context, state) => const HomeScreen(), 

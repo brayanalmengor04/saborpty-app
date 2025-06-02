@@ -24,5 +24,46 @@ class RecipeDataSoruces {
     } else {
       throw Exception('Error loading recipe detail from backend');
     }
+  } 
+
+  Future<List<RecipeModel>> getRecipeByCategory(String categoryName) async {
+   final response = await http.get(Uri.parse(ApiRoutes.pathGetAllRecipesByCategory(categoryName))); 
+      if (response.statusCode == 200) {
+      final List<dynamic> data = jsonDecode(response.body);
+      return data.map((e) => RecipeModel.fromJson(e)).toList();
+    } else {
+      throw Exception('Error loading recipes by cateogry backend');
+    }
   }
+
+  Future<List<RecipeModel>> getRecipeFilterPreparation(String categoryName) async {
+   final response = await http.get(Uri.parse(ApiRoutes.pathGetAllPreparationFilter(categoryName))); 
+      if (response.statusCode == 200) {
+      final List<dynamic> data = jsonDecode(response.body);
+      return data.map((e) => RecipeModel.fromJson(e)).toList();
+    } else {
+      throw Exception('Error loading recipes by preparation backend');
+    }
+  } 
+
+  Future<List<RecipeModel>> getRecipeFilterRating(String categoryName) async {
+   final response = await http.get(Uri.parse(ApiRoutes.pathGetAllRatingFilter(categoryName))); 
+      if (response.statusCode == 200) {
+      final List<dynamic> data = jsonDecode(response.body);
+      return data.map((e) => RecipeModel.fromJson(e)).toList();
+    } else {
+      throw Exception('Error loading recipes by cateogry backend');
+    }
+  }
+
+    Future<List<RecipeModel>> getRecipeFilterRecent(String categoryName) async {
+   final response = await http.get(Uri.parse(ApiRoutes.pathGetAllRecentFilter(categoryName))); 
+      if (response.statusCode == 200) {
+      final List<dynamic> data = jsonDecode(response.body);
+      return data.map((e) => RecipeModel.fromJson(e)).toList();
+    } else {
+      throw Exception('Error loading recipes by recent backend');
+    }
+  }
+
 }

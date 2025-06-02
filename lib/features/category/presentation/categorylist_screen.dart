@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:saborpty_app/core/constants/app_routes.dart';
 import 'package:saborpty_app/features/category/data/models/category_model.dart';
 import 'package:saborpty_app/features/category/domain/repository/category_repository_impl.dart';
-import 'package:saborpty_app/features/category/presentation/category_detail.dart';
 import 'package:saborpty_app/shared/widgets/shimmer/shimmer_category_card.dart';
 import 'package:saborpty_app/shared/widgets/recipe_category_card.dart';
 
@@ -66,7 +65,9 @@ class _CategorylistScreenState extends State<CategorylistScreen> {
                       nameCategory: cat.name ?? 'No Name',
                       placeHolder: cat.imageUrl ??
                           'https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg',
-                     onTap: () => context.go(AppRoutes.categoryDetail), 
+                     onTap: () => context.go(
+                      '/category-detail/${cat.name}?imageUrl=${Uri.encodeComponent(cat.imageUrl ?? '')}',
+                      ),
                     ),
                   )
                   .toList(),
