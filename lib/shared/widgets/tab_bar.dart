@@ -33,7 +33,6 @@ class CustomTabBar extends StatelessWidget {
           fontSize: 13,
         ),
         tabs: const [
-          _MinimalTab(icon: Icons.auto_graph_outlined, label: "Presentación"),
           _MinimalTab(icon: Icons.food_bank_outlined, label: "Ingredientes"),
           _MinimalTab(icon: Icons.outdoor_grill_outlined, label: "Pasos"),
         ],
