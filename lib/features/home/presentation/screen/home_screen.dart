@@ -50,6 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
        ),
+      floatingActionButton: MenuWidgets.floatingButton(context),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   } 
   TextField textFieldSearch() {

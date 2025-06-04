@@ -27,7 +27,6 @@ final appRouter = GoRouter(
       if (user != null && (loggingIn || registering)) {
         return AppRoutes.home;
       }
-
       return null;
     },
   routes: [

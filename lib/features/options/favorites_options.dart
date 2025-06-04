@@ -125,8 +125,11 @@ class _FavoritesOptionsState extends State<FavoritesOptions> {
           setState(() {
             _selectedIndex = index;
           });
-        },
+        }, 
+
       ),
+        floatingActionButton: MenuWidgets.floatingButton(context),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 

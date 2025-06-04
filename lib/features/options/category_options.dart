@@ -26,7 +26,9 @@ class _CategoryOptionsState extends State<CategoryOptions> {
                   _selectedIndex = index;
                 });
               },
-       ), 
+       ),  
+         floatingActionButton: MenuWidgets.floatingButton(context),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
