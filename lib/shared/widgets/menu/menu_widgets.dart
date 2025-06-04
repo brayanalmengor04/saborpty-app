@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:saborpty_app/core/constants/app_colors.dart';
 import 'package:saborpty_app/core/constants/app_routes.dart';
-import 'dart:ui'; 
+import 'dart:ui';
+
+import 'package:saborpty_app/shared/widgets/modalsheet/saved_recipes_modal.dart'; 
 
 
 class MenuWidgets {
@@ -11,7 +13,7 @@ class MenuWidgets {
       automaticallyImplyLeading: false,
       backgroundColor: Colors.white.withOpacity(0.05),
       elevation: 0,
-      toolbarHeight: 70,
+      toolbarHeight: 70, 
       flexibleSpace: ClipRRect(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(30),
@@ -53,7 +55,7 @@ class MenuWidgets {
       ),
     );
   }
-  static BottomNavigationBar bottomNavigationBar({ 
+ static BottomNavigationBar bottomNavigationBar({ 
     required BuildContext context,
     required int currentIndex,
     required void Function(int) onTabChanged,
@@ -101,4 +103,15 @@ class MenuWidgets {
       },
     );
   }
+ static Widget floatingButton(BuildContext context) {
+ return FloatingActionButton(
+    onPressed: () {
+      showSavedRecipesModal(context);
+    },
+    backgroundColor: AppColors.textSecondary,
+    elevation: 6,
+    child: const Icon(Icons.bookmark_border , color: AppColors.primary),
+  );
+}
+
 }

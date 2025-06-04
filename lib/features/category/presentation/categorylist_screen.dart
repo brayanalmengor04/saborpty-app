@@ -65,7 +65,7 @@ class _CategorylistScreenState extends State<CategorylistScreen> {
                       nameCategory: cat.name ?? 'No Name',
                       placeHolder: cat.imageUrl ??
                           'https://uning.es/wp-content/uploads/2016/08/ef3-placeholder-image.jpg',
-                     onTap: () => context.go(
+                     onTap: () => context.push(
                       '/category-detail/${cat.name}?imageUrl=${Uri.encodeComponent(cat.imageUrl ?? '')}',
                       ),
                     ),
