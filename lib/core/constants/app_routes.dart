@@ -12,6 +12,6 @@ class AppRoutes {
     static const String navigation = '/navigation'; 
     static const String homeNavegation = 'home';
     static const String categoryNavegation = 'category';
-    static const String favoritesNavegation = 'favorites';
+    static const String OtherNavegation = 'other';
     static const String perfil = 'perfil';
 }

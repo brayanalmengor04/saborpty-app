@@ -94,7 +94,7 @@ class MenuWidgets {
              context.go('${AppRoutes.navigation}/${AppRoutes.categoryNavegation}');
             break;
           case 2:
-            context.go('${AppRoutes.navigation}/${AppRoutes.favoritesNavegation}');
+            context.go('${AppRoutes.navigation}/${AppRoutes.OtherNavegation}');
             break;
           case 3:
            context.go('${AppRoutes.navigation}/${AppRoutes.perfil}');
