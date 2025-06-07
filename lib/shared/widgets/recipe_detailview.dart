@@ -13,7 +13,7 @@ import 'package:saborpty_app/shared/widgets/tab_bar.dart';
 import 'package:http/http.dart' as http;
 
 class RecipeDetailview extends StatefulWidget {
-  final int recipeId;
+  final int recipeId; 
   final User? user;
 
   const RecipeDetailview({
