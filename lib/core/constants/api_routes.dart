@@ -1,8 +1,8 @@
 class ApiRoutes {
   static const String _hostname = "https://saborpty-backend-production.up.railway.app/api/v1";
   static const String pathGetAllRecipes = "$_hostname/recipes/enriched/all";
-  static String pathGetDetailRecipes(int id) => "$_hostname/recipe/$id/ingredients"; 
-  
+  // static String pathGetDetailRecipes(int id) => "$_hostname/recipe/$id/ingredients"; 
+  static String pathGetDetailRecipes(int id) => "$_hostname/recipes/$id/ingredients"; 
   // Filters category
   static String pathGetAllRecipesByCategory(String categoryName){
     return "$_hostname/recipes/filterby-category/$categoryName/category";
