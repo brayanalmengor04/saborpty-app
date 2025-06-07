@@ -18,7 +18,8 @@ class ProfileSummary extends StatelessWidget {
   Widget build(BuildContext context) {
     final displayName = isGoogleSignIn
         ? (user?.displayName ?? 'Usuario')
-        : (user?.email ?? 'Usuario'); 
+        : (user?.email ?? 'Usuario');  
+        
 
     return Card(
       color: AppColors.primary,

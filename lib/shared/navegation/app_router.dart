@@ -12,6 +12,8 @@ import 'package:saborpty_app/features/options/other_options.dart';
 import 'package:saborpty_app/features/options/perfil_screen.dart';
 import 'package:saborpty_app/main.dart';
 import 'package:saborpty_app/shared/widgets/recipe_detailview.dart';
+ final user = FirebaseAuth.instance.currentUser;
+ 
 
 final appRouter = GoRouter(
   initialLocation: initialRoute, 
@@ -64,7 +66,7 @@ final appRouter = GoRouter(
     builder: (context, state) {
       final idParam = state.pathParameters['id'];
         final recipeId = int.parse(idParam!);
-        return RecipeDetailview(recipeId: recipeId);
+        return RecipeDetailview(recipeId: recipeId, user: user);
       },
     ),
   
