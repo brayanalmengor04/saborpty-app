@@ -12,5 +12,13 @@ class ApiRoutes {
     return "$_hostname/recipes/filterby-preparation/asc/$categoryName/category";
   }
   static String pathGetAllRatingFilter(String categoryName)=> "$_hostname/recipes/filterby-rating/$categoryName";
-  static String pathGetAllRecentFilter(String categoryName)=> "$_hostname/recipes/filterby-recent/$categoryName";
+  static String pathGetAllRecentFilter(String categoryName)=> "$_hostname/recipes/filterby-recent/$categoryName"; 
+
+  // Post Favorite Endpoints (post)
+  static String pathAddFavorite ()=> "$_hostname/favorites";
+  static String pathGetFavoriteByUser (String firebaseUID) => "$_hostname/favorites/$firebaseUID"; 
+  static String pathDeleteFavoriteByUser (String firebaseUID ,int recipeID ){
+    return "$_hostname/favorites/$firebaseUID/recipe/$recipeID";
+  }
+
 }
