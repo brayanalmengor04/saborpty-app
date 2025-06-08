@@ -26,6 +26,8 @@ dependencies:
   modal_bottom_sheet: ^3.0.0
   shared_preferences: ^2.3.0
   shimmer: ^3.0.0
+  url_launcher: ^6.1.10
+  youtube_player_iframe: ^5.2.1
 
 dev_dependencies:
   flutter_test:

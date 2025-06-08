@@ -10,6 +10,7 @@ import 'package:saborpty_app/features/recipes/domain/repository/recipes_reposito
 import 'package:saborpty_app/shared/widgets/tab/ingredients_tab.dart';
 import 'package:saborpty_app/shared/widgets/tab/steps_tab.dart';
 import 'package:saborpty_app/shared/widgets/tab_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 
 class RecipeDetailview extends StatefulWidget {
@@ -297,8 +298,9 @@ class _RecipeDetailviewState extends State<RecipeDetailview>
                               ],
                             ),
                             child: ElevatedButton(
-                              onPressed: () {
-                                // Acción del botón YouTube
+                              onPressed: () async{  
+                                // Lo ideal seria poner un un reproductor despues lo agrego
+                                  await launchUrl(Uri.parse(recipe.youtubeUrl!), mode: LaunchMode.externalApplication);
                               },
                               style: ElevatedButton.styleFrom(
                                 elevation: 0,
