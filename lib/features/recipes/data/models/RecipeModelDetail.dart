@@ -77,7 +77,8 @@ class Recipe {
   double? rating;
   String? imageUrl;
   List<String>? steps;
-  String? categoryName;
+  String? categoryName; 
+  String? youtubeUrl;
 
   Recipe({
     this.id,
@@ -88,7 +89,8 @@ class Recipe {
     this.rating,
     this.imageUrl,
     this.steps,
-    this.categoryName,
+    this.categoryName, 
+    this.youtubeUrl,
   });
 
   factory Recipe.fromJson(Map<String, dynamic> json) {
@@ -112,6 +114,7 @@ class Recipe {
       imageUrl: json["image_url"],
       steps: stepsList,
       categoryName: json["categoryName"],
+      youtubeUrl: json["youtube_url"],
     );
   }
 
@@ -122,8 +125,10 @@ class Recipe {
         "duration_minutes": durationMinutes,
         "difficulty": difficulty,
         "rating": rating,
-        "image_url": imageUrl,
+        "image_url": imageUrl, 
         "steps": steps,
         "categoryName": categoryName,
+        "youtube_url":youtubeUrl,
+
       };
 }
