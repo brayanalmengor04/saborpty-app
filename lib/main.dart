@@ -11,7 +11,6 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-    // Leer si ya vio la introducción
   final prefs = await SharedPreferences.getInstance();
   final hasSeenIntro = prefs.getBool('hasSeenIntro') ?? false;
   initialRoute = hasSeenIntro ? AppRoutes.login : AppRoutes.introduction;

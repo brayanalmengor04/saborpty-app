@@ -7,5 +7,7 @@ abstract class RecipesRepository {
   Future <List<RecipeModel>> getAllRecipesByCategory(String categoryName);
   Future <List<RecipeModel>> getAllRecipesFilterPreparation(String categoryName);
   Future <List<RecipeModel>> getAllRecipesFilterRating(String categoryName);
-  Future <List<RecipeModel>> getAllRecipesFilterRecent(String categoryName);
+  Future <List<RecipeModel>> getAllRecipesFilterRecent(String categoryName); 
+  Future<void> rateRecipe({required int recipeId, required String uid, required double rating});
+
 }
