@@ -6,7 +6,20 @@ import 'package:saborpty_app/features/recipes/data/models/RecipeModel.dart';
 import 'package:saborpty_app/features/recipes/data/models/RecipeModelDetail.dart';
 
 class RecipeDataSoruces {
- 
+  Future<void> rateRecipe({required int recipeId,
+  required String uid,
+  required double rating,}) async {
+  final url = Uri.parse(ApiRoutes.pathRatingRecipe(recipeId));
+  final body = jsonEncode({
+    "uid": uid,
+    "rating": rating,
+  });
+  final headers = {'Content-Type': 'application/json'};
+  final response = await http.put(url, body: body, headers: headers);
+  if (response.statusCode != 200) {
+    throw Exception('Failed to rate recipe. Backend responded with: ${response.statusCode}');
+  }
+}
   Future <List<RecipeModel>> getRecipes() async {
      final response = await http.get(Uri.parse(ApiRoutes.pathGetAllRecipes));
     if (response.statusCode == 200) {

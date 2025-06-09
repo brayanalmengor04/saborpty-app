@@ -247,18 +247,35 @@ class _RecipeDetailviewState extends State<RecipeDetailview>
                                 right: 20,
                                 child:Column( 
                                   children: [
-                                   RatingSection(initialRating: recipe.rating ?? 0.00,
-                                       recipeId: recipe.id ?? 0,
-                                      firebaseUid: user!.uid,
-                                      onConfirmedRating:(rating) async {
-                                          // lógica del backend
-                                          // await RecipeRepositoryImpl().rateRecipe(
-                                          //   recipeId: recipe.id!,
-                                          //   uid: user!.uid,
-                                          //   rating: rating, 
-                                          print(rating);
-                                          // );
-                                        },
+                                RatingSection(
+                                      initialRating: recipe.rating ?? 0.00,
+                                      recipeId: recipe.id ?? 0,
+                                      firebaseUid: widget.user?.uid ?? '', // <-- solución
+                                      onConfirmedRating: (rating) async {
+                                        if (widget.user == null) {
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            const SnackBar(
+                                              content: Text("Debes iniciar sesión para calificar."),
+                                              backgroundColor: Colors.orange,
+                                            ),
+                                          );
+                                          return;
+                                        }
+                                        try {
+                                          await _repo.rateRecipe(
+                                            uid: widget.user!.uid,
+                                            recipeId: recipe.id ?? 0,
+                                            rating: rating,
+                                          );
+                                        } catch (e) {
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(
+                                              content: Text("Error al enviar calificación: ${e.toString()}"),
+                                              backgroundColor: Colors.redAccent,
+                                            ),
+                                          );
+                                        }
+                                      },
                                     ),
                                   ]
                                 ) 

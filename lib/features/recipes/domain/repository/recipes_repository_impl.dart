@@ -30,5 +30,8 @@ class RecipesRepositoryImpl implements RecipesRepository{
   Future<List<RecipeModel>> getAllRecipesFilterRecent(String categoryName) {
    return dataSources.getRecipeFilterRecent(categoryName);
   }
-  
+  @override
+  Future<void> rateRecipe({required int recipeId, required String uid, required double rating}) {
+       return dataSources.rateRecipe(recipeId: recipeId, uid: uid, rating: rating);
+  }
 }

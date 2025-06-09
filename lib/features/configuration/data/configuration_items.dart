@@ -3,6 +3,7 @@ import 'package:saborpty_app/core/constants/app_routes.dart';
 import 'package:saborpty_app/services/auth_google.dart';
 import 'package:go_router/go_router.dart';
 import '../presentation/configuration_list.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 List<ConfigurationItem> getConfigurationItems(BuildContext context) {
   return [
@@ -30,10 +31,15 @@ List<ConfigurationItem> getConfigurationItems(BuildContext context) {
       description: 'Salir de tu cuenta',
       onTap: () async {
         await AuthUser().signOut();
+        await clearSessionData();
         if (context.mounted) {
           context.go(AppRoutes.login);
         }
       },
     ),
   ];
+}
+Future<void> clearSessionData() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.clear(); 
 }
