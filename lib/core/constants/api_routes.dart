@@ -22,6 +22,10 @@ class ApiRoutes {
   static String pathGetFavoriteByUser (String firebaseUID) => "$_hostname/favorites/$firebaseUID"; 
   static String pathDeleteFavoriteByUser (String firebaseUID ,int recipeID ){
     return "$_hostname/favorites/$firebaseUID/recipe/$recipeID";
-  }
+  } 
+
+  // Activities Api ByUser 
+  // GetAllActivity by userFirebase
+  static String pathRecentFavorites (String firebaseUID)=>"$_hostname/activities/$firebaseUID";
 
 }
