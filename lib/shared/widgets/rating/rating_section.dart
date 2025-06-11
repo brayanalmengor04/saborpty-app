@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating/flutter_rating.dart';
-import 'package:saborpty_app/core/constants/app_colors.dart';
-
 class RatingSection extends StatefulWidget {
   final double initialRating;
   final int recipeId;
