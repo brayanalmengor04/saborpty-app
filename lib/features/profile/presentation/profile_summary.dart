@@ -63,7 +63,7 @@ class ProfileSummary extends StatelessWidget {
                               size: 16, color: AppColors.textSecondary),
                           const SizedBox(width: 4),
                           Text(
-                            "Chef Principiante",
+                            "Chef SaborPTY",
                             style: const TextStyle(
                               fontWeight: FontWeight.w600,
                               color: AppColors.textSecondary,

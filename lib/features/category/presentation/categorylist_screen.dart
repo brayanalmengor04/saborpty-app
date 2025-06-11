@@ -20,7 +20,6 @@ class _CategorylistScreenState extends State<CategorylistScreen> {
     return FutureBuilder<List<CategoryModel>>(
       future: _repo.getAllCategories(),
       builder: (context, snapshot) {
-        // Mostrar shimmer mientras carga
         if (snapshot.connectionState == ConnectionState.waiting) {
           return GridView.count(
             crossAxisCount: 2,
