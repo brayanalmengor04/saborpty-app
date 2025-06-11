@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:saborpty_app/features/achievement/presentation/achievement_list.dart';
 import 'package:saborpty_app/features/activity/presentation/recent_activity_list.dart';
 import 'package:saborpty_app/features/configuration/presentation/configuration_list.dart';
 import 'package:saborpty_app/features/profile/presentation/profile_summary.dart';
@@ -43,14 +42,6 @@ Widget build(BuildContext context) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ProfileSummary(user: user),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Text("Logros Recientes", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    child: AchievementList(),
-                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: RecentActivityList(user: user),
