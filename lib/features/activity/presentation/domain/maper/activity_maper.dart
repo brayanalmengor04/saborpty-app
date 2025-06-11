@@ -9,11 +9,7 @@ class ActivityMapper {
       case 'favorite_deleted':
         return Icons.delete_outline;
       case 'recipe_rate':
-        return Icons.local_dining;
-      case 'comment':
-        return Icons.comment;
-      case 'rate':
-        return Icons.star;
+        return Icons.star_rate;
       default:
         return Icons.help_outline;
     }
@@ -24,12 +20,8 @@ class ActivityMapper {
       case 'favorite':
         return activity.description ?? 'Agregaste a favoritos';
       case 'favorite_deleted':
-        return activity.description ?? 'Eliminaste una receta';
+        return activity.description ?? 'Eliminaste una receta de favoritos';
       case 'recipe_rate':
-        return activity.description ?? 'Calificaste una receta';
-      case 'comment':
-        return activity.description ?? 'Comentaste una receta';
-      case 'otro':
         return activity.description ?? 'Calificaste una receta';
       default:
         return activity.description ?? 'Actividad desconocida';
