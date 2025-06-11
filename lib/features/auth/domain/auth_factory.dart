@@ -3,7 +3,6 @@ import 'package:saborpty_app/features/auth/data/email_auth_services.dart';
 import 'package:saborpty_app/features/auth/domain/auth_interface.dart';
 
 import '../data/google_auth_service.dart';
-
 enum AuthType { google ,email}
 
 class AuthFactory {
@@ -17,8 +16,6 @@ class AuthFactory {
           throw ArgumentError('Email y password son requeridos para login por correo');
         }
         return EmailAuthServices(email: email, password: password);
-      default:
-        throw UnimplementedError('Auth type not supported');
     }
   } 
 

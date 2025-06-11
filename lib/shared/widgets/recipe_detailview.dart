@@ -1,14 +1,12 @@
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating/flutter_rating.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:saborpty_app/core/constants/app_colors.dart';
 import 'package:saborpty_app/features/favorites/data/datasources/favorite_data_source.dart';
 import 'package:saborpty_app/features/favorites/domain/repository/favorite_recipe_impl.dart';
 import 'package:saborpty_app/features/recipes/data/models/RecipeModelDetail.dart';
 import 'package:saborpty_app/features/recipes/domain/repository/recipes_repository_impl.dart';
-import 'package:saborpty_app/shared/navegation/app_router.dart';
 import 'package:saborpty_app/shared/widgets/rating/rating_section.dart';
 import 'package:saborpty_app/shared/widgets/tab/ingredients_tab.dart';
 import 'package:saborpty_app/shared/widgets/tab/steps_tab.dart';

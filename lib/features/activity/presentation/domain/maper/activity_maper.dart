@@ -6,9 +6,9 @@ class ActivityMapper {
     switch (type) {
       case 'favorite':
         return Icons.favorite;
-      case 'view':
-        return Icons.visibility;
-      case 'cook':
+      case 'favorite_deleted':
+        return Icons.delete_outline;
+      case 'recipe_rate':
         return Icons.local_dining;
       case 'comment':
         return Icons.comment;
@@ -23,13 +23,13 @@ class ActivityMapper {
     switch (activity.type) {
       case 'favorite':
         return activity.description ?? 'Agregaste a favoritos';
-      case 'view':
-        return activity.description ?? 'Viste una receta';
-      case 'cook':
-        return activity.description ?? 'Cocinaste una receta';
+      case 'favorite_deleted':
+        return activity.description ?? 'Eliminaste una receta';
+      case 'recipe_rate':
+        return activity.description ?? 'Calificaste una receta';
       case 'comment':
         return activity.description ?? 'Comentaste una receta';
-      case 'rate':
+      case 'otro':
         return activity.description ?? 'Calificaste una receta';
       default:
         return activity.description ?? 'Actividad desconocida';

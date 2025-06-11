@@ -26,6 +26,8 @@ class ApiRoutes {
 
   // Activities Api ByUser 
   // GetAllActivity by userFirebase
-  static String pathRecentFavorites (String firebaseUID)=>"$_hostname/activities/$firebaseUID";
+  static String pathActivityAction (String firebaseUID)=>"$_hostname/activities/$firebaseUID"; 
+  // Aqui hare un dezlisamiento en el activity list para eliminar ...
+  static String pathDeleteActivityByUser (String firebaseUID , int id )=>"$_hostname/activities/$firebaseUID/item/$id"; 
 
 }
