@@ -8,11 +8,10 @@ import 'package:saborpty_app/features/category/presentation/category_detail.dart
 import 'package:saborpty_app/features/home/presentation/screen/home_screen.dart';
 import 'package:saborpty_app/features/introduction/introduction_screen.dart';
 import 'package:saborpty_app/features/options/category_options.dart';
-import 'package:saborpty_app/features/options/other_options.dart';
+import 'package:saborpty_app/features/options/week_options.dart';
 import 'package:saborpty_app/features/options/perfil_screen.dart';
 import 'package:saborpty_app/main.dart';
 import 'package:saborpty_app/shared/widgets/recipe_detailview.dart';
-
 final appRouter = GoRouter(
   initialLocation: initialRoute, 
     redirect: (context, state) {
